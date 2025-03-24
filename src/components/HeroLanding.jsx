@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router"
-import hero from "../assets/img/hero.svg"
+import hero from "/hero.svg"
 
 const HeroLanding = () => {
     const navigate = useNavigate();
