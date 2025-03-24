@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: aqua --default, light, dark, forest, retro, valentine, caramellatte, coffee, abyss, winter, nord, dracula, night, synthwave; 
+  }
