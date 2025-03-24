@@ -6,8 +6,5 @@ export default defineConfig({
   plugins: [tailwindcss(), react()],
           // server: {
       //   host: ''
-      // },
-      define: {
-        'process.env.VITE_SUPABASE_KEY':JSON.stringify(process.env.VITE_SUPABASE_KEY)
-      }
+      // }
 });
