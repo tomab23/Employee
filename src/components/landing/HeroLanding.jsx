@@ -9,6 +9,7 @@ const HeroLanding = () => {
     <div className="hero-content flex-col lg:flex-row-reverse gap-10 max-sm:gap-5">
       <img
         src={hero}
+        alt="illustrations by Storyset" title='illustrations by Storyset'
         className="max-w-xs rounded-lg shadow-2xl" />
       <div>
         <h1 className="text-5xl font-bold md:w-[40rem]">Bienvenue sur <b className="uppercase">Employee</b></h1>
