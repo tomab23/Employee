@@ -1,9 +1,9 @@
-import { Languages, Globe } from 'lucide-react';
+import { Languages } from 'lucide-react';
 
 const LanguageDropdown = () => {
   return (
     <div className="dropdown dropdown-top dropdown-center">
-  <div tabIndex={0} role="button" className="btn m-1">Langues
+  <div tabIndex={0} role="button" className="btn m-1"><Languages />
   <svg
       width="12px"
       height="12px"
@@ -14,8 +14,8 @@ const LanguageDropdown = () => {
     </svg>
   </div>
   <ul tabIndex={0} className="dropdown-content menu bg-base-300 rounded-box z-1 w-32 p-2 shadow-sm">
-    <li><a onClick={() => document.activeElement.blur()}>Français</a></li>
-    <li><a onClick={() => document.activeElement.blur()}>English</a></li>
+    <li><a onClick={() => document.activeElement.blur()} className='font-semibold'>Français</a></li>
+    <li><a onClick={() => document.activeElement.blur()} className='font-semibold'>English</a></li>
   </ul>
 </div>
   )
