@@ -1,6 +1,20 @@
 import { Languages } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const LanguageDropdown = () => {
+
+  const { i18n } = useTranslation();
+
+  const langueEn = () => {
+    i18n.changeLanguage("en")
+    document.activeElement.blur()
+  }
+
+  const langueFr = () => {
+    i18n.changeLanguage("fr")
+    document.activeElement.blur()
+  }
+
   return (
     <div className="dropdown dropdown-top dropdown-center">
   <div tabIndex={0} role="button" className="btn m-1"><Languages />
@@ -14,8 +28,8 @@ const LanguageDropdown = () => {
     </svg>
   </div>
   <ul tabIndex={0} className="dropdown-content menu bg-base-300 rounded-box z-1 w-32 p-2 shadow-sm">
-    <li><a onClick={() => document.activeElement.blur()} className='font-semibold'>Français</a></li>
-    <li><a onClick={() => document.activeElement.blur()} className='font-semibold'>English</a></li>
+    <li><a onClick={langueFr} className='font-semibold'>Français</a></li>
+    <li><a onClick={langueEn} className='font-semibold'>English</a></li>
   </ul>
 </div>
   )
