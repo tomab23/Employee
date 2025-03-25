@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import CustomName from "../components/custom/CustomName";
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,7 @@ const LoginPage = () => {
 
   return (
     <div className="hero bg-base-300 min-h-screen">
+      <CustomName />
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl text-center font-bold">Login now!</h1>
