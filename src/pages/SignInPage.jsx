@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import CustomName from "../components/CustomName";
+import CustomName from "../components/custom/CustomName";
 
 
 const SignInPage = () => {

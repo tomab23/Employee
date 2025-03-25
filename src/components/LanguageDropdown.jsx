@@ -1,3 +1,4 @@
+import { Languages, Globe } from 'lucide-react';
 
 const LanguageDropdown = () => {
   return (
