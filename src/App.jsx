@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { themeChange } from 'theme-change';
 import ErrorPage from './pages/ErrorPage';
 import EntreprisePage from './pages/EntreprisePage';
+import './i18n/i18n'
 
 function App() {
 
