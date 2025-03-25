@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ThemeList } from "../../models/ThemeList";
 import InputTheme from "./InputTheme";
+import { themeChange } from "theme-change";
 
 
 const ThemeDropdwon = () => {
@@ -22,7 +23,7 @@ const ThemeDropdwon = () => {
   return (
     <div className="dropdown dropdown-top dropdown-end z-50">
   <div tabIndex={0} role="button" className="btn m-1">
-    Theme
+    Themes
     <svg
       width="12px"
       height="12px"

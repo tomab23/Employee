@@ -4,8 +4,14 @@ import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import SignInPage from './pages/SignInPage';
 import HomePage from './pages/HomePage';
+import { useEffect } from 'react';
+import { themeChange } from 'theme-change';
 
 function App() {
+
+  useEffect(() => {
+    themeChange(false)
+  }, [])
 
   return (
     <Routes>

@@ -1,5 +1,7 @@
-import HeroLanding from "../components/HeroLanding"
+import Accordions from "../components/landing/Accordions";
+import HeroLanding from "../components/landing/HeroLanding"
 import Navbar from "../components/layout/Navbar"
+import Footer from './../components/layout/Footer';
 
 const LandingPage = () => {
   return (
@@ -9,6 +11,12 @@ const LandingPage = () => {
       <div className="flex justify-center mt-20">
         <HeroLanding />
       </div>
+
+      <div className="flex flex-col items-center justify-center mt-20 mb-32 max-sm:px-5 gap-20">
+        <Accordions />
+      </div>
+
+      <Footer />
     </div>
   )
 }
