@@ -12,11 +12,11 @@ const LandingPage = () => {
         <HeroLanding />
       </div>
 
-      <div className="flex flex-col items-center justify-center mt-20 mb-32 max-sm:px-5 gap-20">
+      <div className="flex flex-col items-center justify-center my-20 max-sm:px-5 gap-20">
         <Accordions />
       </div>
 
-      <Footer />
+      <Footer fixed={false}  />
     </div>
   )
 }

@@ -2,7 +2,7 @@ import LanguageDropdown from "../LanguageDropdown"
 import ThemeDropdwon from "../theme/ThemeDropdown"
 
 
-const Footer = (fixed) => {
+const Footer = ({ fixed }) => {
 
   return (
 <footer className={`footer sm:footer-horizontal bg-base-300 items-center p-2 px-5

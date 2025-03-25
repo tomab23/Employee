@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { ThemeList } from "../../models/ThemeList";
 import InputTheme from "./InputTheme";
-import { themeChange } from "theme-change";
-
 
 const ThemeDropdwon = () => {
 
@@ -16,8 +14,6 @@ const ThemeDropdwon = () => {
       localStorage.setItem('theme', theme);
     }
   }, [theme]);
-
-  
 
 
   return (
