@@ -1,3 +1,4 @@
+import ScrollToTopButton from "../components/custom/ScrollToTopButton";
 import Accordions from "../components/landing/Accordions";
 import HeroLanding from "../components/landing/HeroLanding"
 import Navbar from "../components/layout/Navbar"
@@ -16,6 +17,7 @@ const LandingPage = () => {
         <Accordions />
       </div>
 
+      <ScrollToTopButton />
       <Footer fixed={false}  />
     </div>
   )

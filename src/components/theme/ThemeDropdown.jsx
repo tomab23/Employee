@@ -17,7 +17,7 @@ const ThemeDropdwon = () => {
 
 
   return (
-    <div className="dropdown dropdown-top dropdown-end z-50">
+    <div className="dropdown dropdown-top dropdown-end">
   <div tabIndex={0} role="button" className="btn m-1">
     Themes
     <svg
