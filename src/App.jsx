@@ -9,6 +9,7 @@ import { themeChange } from 'theme-change';
 import ErrorPage from './pages/ErrorPage';
 import EntreprisePage from './pages/EntreprisePage';
 import './i18n/i18n'
+import ContactPage from './pages/ContactPage';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Route path="/sign" element={<SignInPage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/entreprise" element={<EntreprisePage />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="/*" element={<ErrorPage />} />
     </Routes>
   )
