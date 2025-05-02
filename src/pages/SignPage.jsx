@@ -1,24 +1,25 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CustomName from "../components/custom/CustomName";
 
-const LoginPage = () => {
+const SignPage = ({ login }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const logPath = () => {
-    setLoading(true)
+    setLoading(true);
     setTimeout(() => {
-        navigate("/home");
-      }, 1000);
-  }
-
+      navigate("/home");
+    }, 1000);
+  };
   return (
     <div className="hero bg-base-300 min-h-screen">
       <CustomName />
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl text-center font-bold">Login now!</h1>
+          <h1 className="text-5xl text-center font-bold">
+            {login ? "Login now!" : "Hello new user!"}
+          </h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
@@ -85,7 +86,21 @@ const LoginPage = () => {
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                 />
+                {/* TOOLTIP */}
+                {!login && (
+                  <div className="tooltip max-sm:tooltip-left ">
+                    <div className="tooltip-content">
+                      <div className="font-semibold max-sm:text-xs max-sm:w-56">
+                      Must be more than 8 characters, including number, lowercase letter, uppercase letter
+                      </div>
+                    </div>
+                    <span className="badge badge-neutral badge-xs cursor-pointer">
+                      i
+                    </span>
+                  </div>
+                )}
               </label>
+
               <p className="validator-hint hidden">
                 Must be more than 8 characters, including
                 <br />
@@ -96,23 +111,33 @@ const LoginPage = () => {
                 At least one uppercase letter
               </p>
               {/* FORGOT PASSWORD */}
-              <div>
-                <a className="link link-hover">Forgot password?</a>
-              </div>
+              {login && (
+                <div>
+                  <a className="link link-hover">Forgot password?</a>
+                </div>
+              )}
               {/* BUTTON */}
-              <button
-                className="btn btn-neutral mt-4"
-                onClick={logPath}
-              >
-                {loading ? "Login..." : "Login"}
-                {loading && <span className="loading loading-bars"></span>}
+              <button className="btn btn-neutral mt-4" onClick={logPath}>
+                {login ? (
+                  <p>
+                    {loading ? "" : "Login"}{" "}
+                    {loading && <span className="loading loading-bars"></span>}
+                  </p>
+                ) : (
+                  <p>
+                    {loading ? "" : "Inscription"}{" "}
+                    {loading && <span className="loading loading-bars"></span>}
+                  </p>
+                )}
               </button>
-              {/* NEW USER ? */}
+              {/* NEW USER or LOGIN ? */}
               <p
-                className="mt-5 text-center italic hover:underline hover:cursor-pointer"
-                onClick={() => navigate("/sign")}
+                className="mt-5 text-center italic hover:underline hover:cursor-pointer w-fit justify-self-center"
+                onClick={() => navigate(login ? "/sign" : "/login")}
               >
-                Je n'ai pas de compte ? Inscription
+                {login
+                  ? "Je n'ai pas de compte ? Inscription"
+                  : "J'ai un compte ? Connexion"}
               </p>
             </fieldset>
           </div>
@@ -122,4 +147,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignPage;

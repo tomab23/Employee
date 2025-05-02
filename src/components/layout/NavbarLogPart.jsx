@@ -36,7 +36,7 @@ const NavbarLogPart = () => {
             </a>
           </li>
           <li>
-            <a>Settings</a>
+            <a>Contact</a>
           </li>
           <li onClick={() => navigate("/")}>
             <a>Logout</a>
