@@ -25,6 +25,8 @@ const HomePage = () => {
     <div>
       <Navbar log />
 
+      <h1 className="text-center text-3xl my-5 font-semibold">Bonjour {session?.user?.email}</h1>
+
       <h1 className="text-center text-5xl my-5 font-semibold">Vos entreprises</h1>
 
       <div className="mt-10 mx-5 flex gap-5">
@@ -35,8 +37,6 @@ const HomePage = () => {
 
       {/* BUTTON ADD ENTREPRISE */}
       <ButtonAddEntreprise />
-
-        <h3>Session email : {session?.user?.email}</h3>
 
         <Footer fixed />
     </div>
