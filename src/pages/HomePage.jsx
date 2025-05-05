@@ -4,14 +4,28 @@ import ButtonAddEntreprise from "../components/entreprise/ButtonAddEntreprise"
 import EntrepriseCard from "../components/entreprise/EntrepriseCard"
 import Footer from "../components/layout/Footer"
 import Navbar from "../components/layout/Navbar"
+import { useEffect, useState } from "react"
+import { supabase } from "../SupabaseClient"
 
 const HomePage = () => {
 
   const { t } = useTranslation();
+  const [session, setSession] = useState(null)
+
+  
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+  }, [])
+
+
 
   return (
     <div>
       <Navbar log />
+
+      <h1 className="text-center text-3xl my-5 font-semibold">Bonjour {session?.user?.email}</h1>
 
       <h1 className="text-center text-5xl my-5 font-semibold">Vos entreprises</h1>
 
@@ -23,8 +37,6 @@ const HomePage = () => {
 
       {/* BUTTON ADD ENTREPRISE */}
       <ButtonAddEntreprise />
-
-        <h2 className="mt-10">key test : {import.meta.env.VITE_SUPABASE_KEY}</h2>
 
         <Footer fixed />
     </div>

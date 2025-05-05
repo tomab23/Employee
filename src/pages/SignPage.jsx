@@ -1,17 +1,89 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomName from "../components/custom/CustomName";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { supabase } from "../SupabaseClient";
 
 const SignPage = ({ login }) => {
+  
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const logPath = () => {
-    setLoading(true);
-    setTimeout(() => {
-      navigate("/home");
-    }, 1000);
+  const ValidSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Adresse email invalide")
+      .required("Adresse email obligatoire"),
+    password: Yup.string()
+      .min(8, "Votre password est trop court")
+      .required("Le message est obligatoire"),
+  });
+
+  // SIGN UP
+  const signUpNewUser = async (email, password) => {
+    setLoading(true)
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,   
+    });
+
+    if (error) {
+      setLoading(false)
+      console.error("Error signing up: ", error);
+      return { success: false, error };
+    }
+
+    setLoading(false)
+    navigate('/home')
+    return { success: true, data };
   };
+
+    // SIGN IN
+    const signInUser = async (email, password) => {
+      setLoading(true)
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: password,
+        });
+  
+        // Handle Supabase error explicitly
+        if (error) {
+          console.error("Sign-in error:", error.message); // Log the error for debugging
+          return { success: false, error: error.message }; // Return the error
+        }
+  
+        // If no error, return success
+        console.log("Sign-in success:", data);
+        setLoading(false)
+        navigate('/home')
+        return { success: true, data }; // Return the user data
+      } catch (error) {
+        // Handle unexpected issues
+        console.error("Unexpected error during sign-in:", error.message);
+        return {
+          success: false,
+          error: "An unexpected error occurred. Please try again.",
+        };
+      }
+    };
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    enableReinitialize: true,
+    validationSchema: ValidSchema,
+    onSubmit: (values) => {
+      if (login) {
+        signInUser(values.email, values.password)
+      } else (
+        signUpNewUser(values.email, values.password)
+      )
+    },
+  });
+
   return (
     <div className="hero bg-base-300 min-h-screen">
       <CustomName />
@@ -27,7 +99,7 @@ const SignPage = ({ login }) => {
           </p>
         </div>
         {/*  FORM  */}
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <form className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl" onSubmit={formik.handleSubmit}>
           <div className="card-body">
             <fieldset className="fieldset">
               {/* EMAIL */}
@@ -49,7 +121,13 @@ const SignPage = ({ login }) => {
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                   </g>
                 </svg>
-                <input type="email" placeholder="mail@site.com" required />
+                {/* INPUT EMAIL */}
+                <input type="email" placeholder="mail@site.com" required
+                  id="email"
+                  name="email"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                               />
               </label>
               <div className="validator-hint hidden">
                 Enter valid email address
@@ -78,13 +156,17 @@ const SignPage = ({ login }) => {
                     ></circle>
                   </g>
                 </svg>
+                {/* INPUT PASSWORD */}
                 <input
                   type="password"
+                  id="password"
+                  name="password"
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
                   required
                   placeholder="Password"
                   min="8"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                  title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                 />
                 {/* TOOLTIP */}
                 {!login && (
@@ -101,15 +183,17 @@ const SignPage = ({ login }) => {
                 )}
               </label>
 
-              <p className="validator-hint hidden">
-                Must be more than 8 characters, including
-                <br />
-                At least one number
-                <br />
-                At least one lowercase letter
-                <br />
-                At least one uppercase letter
-              </p>
+              {!login &&
+                 <p className="validator-hint hidden">
+                 Must be more than 8 characters, including
+                 <br />
+                 At least one number
+                 <br />
+                 At least one lowercase letter
+                 <br />
+                 At least one uppercase letter
+               </p>           
+              }
               {/* FORGOT PASSWORD */}
               {login && (
                 <div>
@@ -117,7 +201,7 @@ const SignPage = ({ login }) => {
                 </div>
               )}
               {/* BUTTON */}
-              <button className="btn btn-neutral mt-4" onClick={logPath}>
+              <button type="submit" className="btn btn-neutral mt-4">
                 {login ? (
                   <p>
                     {loading ? "" : "Login"}{" "}
@@ -141,7 +225,7 @@ const SignPage = ({ login }) => {
               </p>
             </fieldset>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
