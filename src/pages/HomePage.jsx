@@ -4,10 +4,22 @@ import ButtonAddEntreprise from "../components/entreprise/ButtonAddEntreprise"
 import EntrepriseCard from "../components/entreprise/EntrepriseCard"
 import Footer from "../components/layout/Footer"
 import Navbar from "../components/layout/Navbar"
+import { useEffect, useState } from "react"
+import { supabase } from "../SupabaseClient"
 
 const HomePage = () => {
 
   const { t } = useTranslation();
+  const [session, setSession] = useState(null)
+
+  
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+  }, [])
+
+
 
   return (
     <div>
@@ -24,7 +36,7 @@ const HomePage = () => {
       {/* BUTTON ADD ENTREPRISE */}
       <ButtonAddEntreprise />
 
-        <h2 className="mt-10">key test : {import.meta.env.VITE_SUPABASE_KEY}</h2>
+        <h3>Session email : {session?.user?.email}</h3>
 
         <Footer fixed />
     </div>

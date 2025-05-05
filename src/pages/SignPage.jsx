@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import CustomName from "../components/custom/CustomName";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { supabase } from "../SupabaseClient";
 
 const SignPage = ({ login }) => {
+  
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const ValidSchema = Yup.object().shape({
-    mail: Yup.string()
+    email: Yup.string()
       .email("Adresse email invalide")
       .required("Adresse email obligatoire"),
     password: Yup.string()
@@ -17,23 +19,68 @@ const SignPage = ({ login }) => {
       .required("Le message est obligatoire"),
   });
 
-  const logPath = () => {
-    setLoading(true);
-    setTimeout(() => {
-      navigate("/home");
-    }, 1000);
+  // SIGN UP
+  const signUpNewUser = async (email, password) => {
+    setLoading(true)
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,   
+    });
+
+    if (error) {
+      setLoading(false)
+      console.error("Error signing up: ", error);
+      return { success: false, error };
+    }
+
+    setLoading(false)
+    navigate('/home')
+    return { success: true, data };
   };
+
+    // SIGN IN
+    const signInUser = async (email, password) => {
+      setLoading(true)
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: password,
+        });
+  
+        // Handle Supabase error explicitly
+        if (error) {
+          console.error("Sign-in error:", error.message); // Log the error for debugging
+          return { success: false, error: error.message }; // Return the error
+        }
+  
+        // If no error, return success
+        console.log("Sign-in success:", data);
+        setLoading(false)
+        navigate('/home')
+        return { success: true, data }; // Return the user data
+      } catch (error) {
+        // Handle unexpected issues
+        console.error("Unexpected error during sign-in:", error.message);
+        return {
+          success: false,
+          error: "An unexpected error occurred. Please try again.",
+        };
+      }
+    };
 
   const formik = useFormik({
     initialValues: {
-      mail: "",
+      email: "",
       password: "",
     },
     enableReinitialize: true,
     validationSchema: ValidSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values))
-      logPath();
+      if (login) {
+        signInUser(values.email, values.password)
+      } else (
+        signUpNewUser(values.email, values.password)
+      )
     },
   });
 
@@ -76,10 +123,10 @@ const SignPage = ({ login }) => {
                 </svg>
                 {/* INPUT EMAIL */}
                 <input type="email" placeholder="mail@site.com" required
-                  id="mail"
-                  name="mail"
+                  id="email"
+                  name="email"
                   onChange={formik.handleChange}
-                  value={formik.values.mail}
+                  value={formik.values.email}
                                />
               </label>
               <div className="validator-hint hidden">

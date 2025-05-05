@@ -1,9 +1,18 @@
 import { useNavigate } from "react-router";
+import { supabase } from "../../SupabaseClient";
 
 const NavbarLogPart = () => {
   
   const navigate = useNavigate();
   const avatarName = "email"
+
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Error signing out:", error);
+    }
+    navigate("/")
+  }
 
   return (
     <div className="flex gap-2">
@@ -38,7 +47,7 @@ const NavbarLogPart = () => {
           <li>
             <a>Contact</a>
           </li>
-          <li onClick={() => navigate("/")}>
+          <li onClick={signOut}>
             <a>Logout</a>
           </li>
         </ul>
