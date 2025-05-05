@@ -20,7 +20,7 @@ const PrivateRoute = ({ children }) => {
     return <div>Loading...</div>;
   }
 
-  return <div>{session ? <>{children}</> : <Navigate to="/" />}</div>;
+  return <div>{session ? <>{children}</> : <Navigate to="/login" />}</div>;
 };
 
 export default PrivateRoute;

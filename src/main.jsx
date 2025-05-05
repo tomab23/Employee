@@ -7,10 +7,10 @@ import { router } from './routes/Router.jsx'
 
 
 createRoot(document.getElementById('root')).render(
-  // <BrowserRouter>
-  //   <App />
-  // </BrowserRouter>,
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  // <StrictMode>
+  //   <RouterProvider router={router} />
+  // </StrictMode>
 )
