@@ -9,6 +9,7 @@ import EntreprisePage from './pages/EntreprisePage';
 import './i18n/i18n'
 import ContactPage from './pages/ContactPage';
 import SignPage from './pages/SignPage';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
 
