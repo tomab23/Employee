@@ -7,11 +7,11 @@ const NavbarLogPart = () => {
   const avatarName = "email"
 
   async function signOut() {
+    navigate("/")
     const { error } = await supabase.auth.signOut();
     if (error) {
       console.error("Error signing out:", error);
     }
-    navigate("/")
   }
 
   return (
@@ -39,16 +39,22 @@ const NavbarLogPart = () => {
           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-semibold"
         >
           <li>
-            <a className="justify-between">
-              Profile
-              <span className="badge">New</span>
+            <a className="justify-between" onClick={() => navigate("/home")}>
+              Entreprises
+              {/* <span className="badge">New</span> */}
             </a>
           </li>
           <li>
-            <a>Contact</a>
+            <a className="justify-between" onClick={() => navigate("/profile")}>
+              Profil
+              {/* <span className="badge">New</span> */}
+            </a>
+          </li>
+          <li>
+            <a onClick={() => navigate("/contact")}>Contact</a>
           </li>
           <li onClick={signOut}>
-            <a>Logout</a>
+            <a>Déconnexion</a>
           </li>
         </ul>
       </div>

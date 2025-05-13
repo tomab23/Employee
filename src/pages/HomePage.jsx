@@ -15,15 +15,22 @@ const HomePage = () => {
   
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-  }, [])
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
+ 
+  
 
 
 
   return (
     <div>
-      <Navbar log />
+      <Navbar />
 
       <h1 className="text-center text-3xl my-5 font-semibold">Bonjour {session?.user?.email}</h1>
 
