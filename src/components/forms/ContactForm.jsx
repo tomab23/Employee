@@ -13,7 +13,7 @@ const ContactForm = () => {
         <label className="fieldset-label">Message</label>
         <textarea className="textarea" placeholder="My message"></textarea>
 
-        <button className="btn btn-neutral mt-4">Login</button>
+        <button className="btn btn-neutral mt-4">Envoyer</button>
       </fieldset>
     </div>
   );

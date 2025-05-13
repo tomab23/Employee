@@ -9,7 +9,7 @@ import Footer from './../components/layout/Footer';
 const LandingPage = () => {
   return (
     <div>
-      <Navbar log={false} />
+      <Navbar/>
 
       <div className="flex justify-center mt-20">
         <HeroLanding />

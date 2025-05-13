@@ -3,7 +3,6 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter, RouterProvider } from 'react-router-dom'
 import { StrictMode } from 'react'
-import { router } from './routes/Router.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -11,6 +10,6 @@ createRoot(document.getElementById('root')).render(
     <App />
   </BrowserRouter>,
   // <StrictMode>
-  //   <RouterProvider router={router} />
+  //   <RouterProvider router={routerOther} />
   // </StrictMode>
 )
