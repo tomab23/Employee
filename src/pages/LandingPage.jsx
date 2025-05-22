@@ -1,15 +1,21 @@
+import AlertWarning from "../components/AlertWarning";
 import ScrollToTopButton from "../components/custom/ScrollToTopButton";
 import Accordions from "../components/landing/Accordions";
 import ContactPart from "../components/landing/ContactPart";
-import HeroLanding from "../components/landing/HeroLanding"
+import HeroLanding from "../components/landing/HeroLanding";
 import LinksPart from "../components/landing/LinksPart";
-import Navbar from "../components/layout/Navbar"
-import Footer from './../components/layout/Footer';
+import Navbar from "../components/layout/Navbar";
+import Footer from "./../components/layout/Footer";
 
 const LandingPage = () => {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
+
+      {/* ALERT */}
+      <div className="flex justify-center mt-2">
+        <AlertWarning />
+      </div>
 
       <div className="flex justify-center mt-20">
         <HeroLanding />
@@ -19,12 +25,12 @@ const LandingPage = () => {
         <Accordions />
         <ContactPart />
         <LinksPart />
-      </div> 
+      </div>
 
       <ScrollToTopButton />
-      <Footer fixed={false}  />
+      <Footer fixed={false} />
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;

@@ -24,12 +24,13 @@ const HomePage = () => {
   }, []);
 
   const entList = EntrepriseListMock;
+
   
   
 
   return (
     <div>
-      <Navbar />
+      <Navbar log />
 
       <h1 className="text-center text-3xl my-5 font-semibold">Bonjour {session?.user?.email}</h1>
 

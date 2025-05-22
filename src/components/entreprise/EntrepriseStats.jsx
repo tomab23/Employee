@@ -3,7 +3,7 @@ import React from 'react'
 const EntrepriseStats = () => {
   return (
 <div className='flex gap-5'>
-<div className="stats shadow text-4xl flex gap-10">
+<div className="stats shadow text-4xl flex max-sm:flex-col gap-10">
     {/* 1 */}
   <div className="stat">
     <div className="stat-title text-2xl">Total Page Views</div>

@@ -1,12 +1,17 @@
+
 import { useParams } from "react-router-dom";
+import Navbar from "../../components/layout/Navbar";
 
 const UserFormPage = () => {
 
     const {userId} = useParams();
-    // const isEdit = userId !== undefined;
     
   return (
-    <div>UserFormPage</div>
+    <div>
+      <Navbar back log />
+
+      <p>User page : User id = {Number(userId)}</p>
+    </div>
   )
 }
 

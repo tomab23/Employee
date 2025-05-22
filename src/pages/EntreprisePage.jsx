@@ -27,7 +27,7 @@ const EntreprisePage = () => {
 
   return (
     <div>
-      <Navbar back />
+      <Navbar back log />
       <h1 className="text-center text-3xl font-semibold uppercase my-5">
         {ent?.name}
       </h1>

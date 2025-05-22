@@ -1,5 +1,9 @@
+import { useNavigate } from "react-router-dom";
 
 const ProfileInfo = ({ user }) => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="card card-border bg-base-300 w-full">
       <div className="card-body">
@@ -11,6 +15,7 @@ const ProfileInfo = ({ user }) => {
                 <p>
           Location : {user?.location}
         </p>
+        <button className="btn btn-outline btn-primary btn-sm w-fit self-end" onClick={() => navigate(`/user-form/${user?.id}`)}>Modifier</button>
       </div>
     </div>
   );
