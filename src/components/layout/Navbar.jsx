@@ -6,12 +6,6 @@ import { supabase } from "../../SupabaseClient";
 const Navbar = ({ back, log }) => {
   const navigate = useNavigate();
 
-  const backHome = () => {
-    if (session) {
-      navigate("/home");
-    }
-  };
-
   const [session, setSession] = useState(null);
 
   useEffect(() => {
@@ -34,12 +28,13 @@ const Navbar = ({ back, log }) => {
         </div>
       ) : (
         <div className="flex-1">
-          <a
+          {/* <a
             className={`btn btn-ghost text-xl ${!session && "cursor-default"}`}
             onClick={backHome}
           >
             Employee
-          </a>
+          </a> */}
+          <p className="px-4 font-semibold text-xl cursor-default">Employee</p>
         </div>
       )}
       {/* BUTTONS */}
