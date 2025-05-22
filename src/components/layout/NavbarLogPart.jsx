@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router";
 import { supabase } from "../../SupabaseClient";
+import Avatar from "../profile/Avatar";
 
 const NavbarLogPart = () => {
-  
   const navigate = useNavigate();
-  const avatarName = "email"
 
   async function signOut() {
-    navigate("/")
+    navigate("/");
     const { error } = await supabase.auth.signOut();
     if (error) {
       console.error("Error signing out:", error);
@@ -28,10 +27,7 @@ const NavbarLogPart = () => {
           className="btn btn-ghost btn-circle avatar"
         >
           <div className="w-10 rounded-full">
-            <img
-              src={`https://api.dicebear.com/9.x/shapes/svg?seed=${avatarName}`}
-              alt="avatar"
-            />
+            <Avatar />
           </div>
         </div>
         <ul
@@ -53,6 +49,10 @@ const NavbarLogPart = () => {
           <li>
             <a onClick={() => navigate("/contact")}>Contact</a>
           </li>
+          <li>
+            <a onClick={() => navigate("/dev")}>Développement</a>
+          </li>
+          <div className="divider -my-1"></div>
           <li onClick={signOut}>
             <a>Déconnexion</a>
           </li>

@@ -3,6 +3,7 @@ import Footer from "../components/layout/Footer";
 import ContactForm from "../components/forms/ContactForm";
 import Navbar from "../components/layout/Navbar";
 
+
 const ContactPage = () => {
 
   return (

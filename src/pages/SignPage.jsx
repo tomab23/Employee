@@ -19,7 +19,7 @@ const SignPage = ({ login }) => {
       .required("Le message est obligatoire"),
   });
 
-  // SIGN UP
+  // REGISTER
   const signUpNewUser = async (email, password) => {
     setLoading(true)
     const { data, error } = await supabase.auth.signUp({
@@ -32,13 +32,12 @@ const SignPage = ({ login }) => {
       console.error("Error signing up: ", error);
       return { success: false, error };
     }
-
     setLoading(false)
     navigate('/home')
     return { success: true, data };
   };
 
-    // SIGN IN
+    // LOGIN
     const signInUser = async (email, password) => {
       setLoading(true)
       try {
@@ -53,8 +52,9 @@ const SignPage = ({ login }) => {
           return { success: false, error: error.message }; // Return the error
         }
   
-        // If no error, return success
-        console.log("Sign-in success:", data);
+        // IF NO RERROR, RETURN SUCCESS
+        // console.log("Sign-in success:", data);
+        // alert(JSON.stringify(data.user.id))
         setLoading(false)
         navigate('/home')
         return { success: true, data }; // Return the user data
