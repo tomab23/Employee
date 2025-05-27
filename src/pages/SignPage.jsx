@@ -4,9 +4,9 @@ import CustomName from "../components/custom/CustomName";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { supabase } from "../SupabaseClient";
+import { KeyRound, Mail, MapPin, UserPen } from "lucide-react";
 
 const SignPage = ({ login }) => {
-  
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -20,67 +20,96 @@ const SignPage = ({ login }) => {
   });
 
   // REGISTER
-  const signUpNewUser = async (email, password) => {
-    setLoading(true)
+  const signUpNewUser = async (email, password, first, last, loc) => {
+    setLoading(true);
     const { data, error } = await supabase.auth.signUp({
       email: email,
-      password: password,   
+      password: password,
+      options: {
+        data: {
+          first_name: first,
+          last_name: last,
+          location: loc,
+          avatar: "shapes"
+        }
+      }
     });
 
     if (error) {
-      setLoading(false)
+      setLoading(false);
       console.error("Error signing up: ", error);
       return { success: false, error };
     }
-    setLoading(false)
-    navigate('/home')
+
+    // GET USER LOG
+    // const { data: { user } } = await supabase.auth.getUser();
+
+    // // ADD USER INFO
+    // const { errorAdd } = await supabase
+    //   .from("user_info")
+    //   .insert({ lastname: last, firstname: first, location: loc, user_id: user.id, avatar: "shapes" });
+
+    // if (errorAdd ) {
+    //   alert("error Create user informations")
+    // }
+
+    setLoading(false);
+    navigate("/home");
+        
     return { success: true, data };
   };
 
-    // LOGIN
-    const signInUser = async (email, password) => {
-      setLoading(true)
-      try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email: email,
-          password: password,
-        });
-  
-        // Handle Supabase error explicitly
-        if (error) {
-          console.error("Sign-in error:", error.message); // Log the error for debugging
-          return { success: false, error: error.message }; // Return the error
-        }
-  
-        // IF NO RERROR, RETURN SUCCESS
-        // console.log("Sign-in success:", data);
-        // alert(JSON.stringify(data.user.id))
-        setLoading(false)
-        navigate('/home')
-        return { success: true, data }; // Return the user data
-      } catch (error) {
-        // Handle unexpected issues
-        console.error("Unexpected error during sign-in:", error.message);
-        return {
-          success: false,
-          error: "An unexpected error occurred. Please try again.",
-        };
+  // LOGIN
+  const signInUser = async (email, password) => {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      // Handle Supabase error explicitly
+      if (error) {
+        console.error("Sign-in error:", error.message); // Log the error for debugging
+        return { success: false, error: error.message }; // Return the error
       }
-    };
+
+      // IF NO RERROR, RETURN SUCCESS
+      // console.log("Sign-in success:", data);
+      setLoading(false);
+      navigate("/home");
+      return { success: true, data }; // Return the user data
+    } catch (error) {
+      // Handle unexpected issues
+      console.error("Unexpected error during sign-in:", error.message);
+      return {
+        success: false,
+        error: "An unexpected error occurred. Please try again.",
+      };
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
+      firstname: "",
+      lastname: "",
+      location: "",
     },
     enableReinitialize: true,
     validationSchema: ValidSchema,
     onSubmit: (values) => {
       if (login) {
-        signInUser(values.email, values.password)
-      } else (
-        signUpNewUser(values.email, values.password)
-      )
+        signInUser(values.email, values.password);
+      } else
+        signUpNewUser(
+          values.email,
+          values.password,
+          values.firstname,
+          values.lastname,
+          values.location
+        );
     },
   });
 
@@ -99,35 +128,26 @@ const SignPage = ({ login }) => {
           </p>
         </div>
         {/*  FORM  */}
-        <form className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl" onSubmit={formik.handleSubmit}>
+        <form
+          className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
+          onSubmit={formik.handleSubmit}
+        >
           <div className="card-body">
             <fieldset className="fieldset">
               {/* EMAIL */}
               <label className="fieldset-label">Email</label>
               <label className="input validator">
-                <svg
-                  className="h-[1em] opacity-50"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2.5"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                  </g>
-                </svg>
+                <Mail className="w-5 stroke-2" />
                 {/* INPUT EMAIL */}
-                <input type="email" placeholder="mail@site.com" required
+                <input
+                  type="email"
+                  placeholder="mail@site.com"
+                  required
                   id="email"
                   name="email"
                   onChange={formik.handleChange}
                   value={formik.values.email}
-                               />
+                />
               </label>
               <div className="validator-hint hidden">
                 Enter valid email address
@@ -135,27 +155,7 @@ const SignPage = ({ login }) => {
               {/* PASSWORD */}
               <label className="fieldset-label">Password</label>
               <label className="input validator">
-                <svg
-                  className="h-[1em] opacity-50"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2.5"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
-                    <circle
-                      cx="16.5"
-                      cy="7.5"
-                      r=".5"
-                      fill="currentColor"
-                    ></circle>
-                  </g>
-                </svg>
+                <KeyRound className="w-5 stroke-2" />
                 {/* INPUT PASSWORD */}
                 <input
                   type="password"
@@ -173,7 +173,8 @@ const SignPage = ({ login }) => {
                   <div className="tooltip max-sm:tooltip-left ">
                     <div className="tooltip-content">
                       <div className="font-semibold max-sm:text-xs max-sm:w-56">
-                      Must be more than 8 characters, including number, lowercase letter, uppercase letter
+                        Must be more than 8 characters, including number,
+                        lowercase letter, uppercase letter
                       </div>
                     </div>
                     <span className="badge badge-neutral badge-xs cursor-pointer">
@@ -183,17 +184,81 @@ const SignPage = ({ login }) => {
                 )}
               </label>
 
-              {!login &&
-                 <p className="validator-hint hidden">
-                 Must be more than 8 characters, including
-                 <br />
-                 At least one number
-                 <br />
-                 At least one lowercase letter
-                 <br />
-                 At least one uppercase letter
-               </p>           
-              }
+              {!login && (
+                <p className="validator-hint hidden">
+                  Must be more than 8 characters, including
+                  <br />
+                  At least one number
+                  <br />
+                  At least one lowercase letter
+                  <br />
+                  At least one uppercase letter
+                </p>
+              )}
+              {/* NAME & LOCATION */}
+              {!login && (
+                <div>
+                  {/* // FIRSTNAME & LASTNAME */}
+                  <div className="flex gap-4 w-80">
+                    <div>
+                      <label className="fieldset-label mb-1">Fistrname</label>
+                      <label className="input validator">
+                        <UserPen className="w-5 stroke-2" />
+                        {/* INPUT FIRSTNAME */}
+                        <input
+                          type="text"
+                          placeholder="John"
+                          required
+                          id="firstname"
+                          name="firstname"
+                          onChange={formik.handleChange}
+                          value={formik.values.firstname}
+                        />
+                      </label>
+                      <div className="validator-hint hidden">
+                        Enter your firstname
+                      </div>
+                    </div>
+                    <div>
+                      <label className="fieldset-label mb-1">Lastname</label>
+                      <label className="input validator">
+                        <UserPen className="w-5 stroke-2" />
+                        {/* INPUT LASTNAME */}
+                        <input
+                          type="text"
+                          placeholder="Doe"
+                          required
+                          id="lastname"
+                          name="lastname"
+                          onChange={formik.handleChange}
+                          value={formik.values.lastname}
+                        />
+                      </label>
+                      <div className="validator-hint hidden">
+                        Enter your lastname
+                      </div>
+                    </div>
+                  </div>
+                  {/* LOCATION */}
+                  <label className="fieldset-label mb-1">Location</label>
+                  <label className="input validator">
+                    <MapPin className="w-5 stroke-2" />
+                    {/* INPUT LOCATION */}
+                    <input
+                      type="text"
+                      placeholder="France"
+                      required
+                      id="location"
+                      name="location"
+                      onChange={formik.handleChange}
+                      value={formik.values.location}
+                    />
+                  </label>
+                  <div className="validator-hint hidden">
+                    Enter your location
+                  </div>
+                </div>
+              )}
               {/* FORGOT PASSWORD */}
               {login && (
                 <div>

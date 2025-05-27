@@ -10,6 +10,7 @@ const EntrepriseCard = ({ entreprise }) => {
     <div className="card bg-base-100 image-full w-80 xl:w-96 shadow-sm">
   <figure>
     <img
+    loading="lazy"
       src={ep1}
       alt="entreprise image" />
   </figure>
