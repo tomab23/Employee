@@ -10,7 +10,7 @@ const UserFormPage = () => {
     <div>
       <Navbar back log />
 
-      <p>User page : User id = {Number(userId)}</p>
+      <p>User page : User id = {userId}</p>
     </div>
   )
 }

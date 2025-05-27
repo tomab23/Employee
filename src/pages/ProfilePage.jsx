@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Navbar from "../components/layout/Navbar";
 import ProfileInfo from "../components/profile/ProfileInfo";
 import Footer from "../components/layout/Footer";
@@ -8,37 +8,38 @@ const ProfilePage = () => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-      getUserbyId()
+  useEffect(() => {
+    getUserbyId();
   }, []);
-  
 
-  async function getUserbyId() {  
+  async function getUserbyId() {
     // setLoading(true);
-      const { data: { user } } = await supabase.auth.getUser()
-    const { data, error } = await supabase.from("user_info").select().eq("user_id", user.id);
-          if (error) {
-        console.log(error.message);
-      }
-
-    setUser(data[0]);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    setUser(user.user_metadata);
     setLoading(false);
   }
 
-  // console.log(user);
+  console.log();
 
   // if (loading) {
   //   return <div className="h-[100vh] flex justify-center items-center"><span className="loading loading-spinner loading-2xl"></span></div>
   // }
 
-  
-  
-
   return (
     <div>
       <Navbar back log />
-      <h1 className="text-4xl font-bold text-center mt-5">Votre profil - {user?.firstname} {user?.lastname}</h1>
-      {loading && <div className="flex justify-center"><span className=" loading loading-infinity loading-md"></span></div>  }
+      <h1 className="text-4xl font-bold text-center mt-5">
+        Votre profil -{" "}
+        {loading ? (
+          <span className=" loading loading-infinity loading-md"></span>
+        ) : (
+          <span>
+            {user?.first_name} {user?.last_name}
+          </span>
+        )}
+      </h1>
 
       <br />
       <br />
