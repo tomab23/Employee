@@ -1,3 +1,7 @@
 {
+  "DEV": {
+    "ACTUAL": "Actuellement fonctionnel",
+    "FUTURE": "Fonctionnalités à venir"
+  },
   "TEST": "FRANCAIS"
 }

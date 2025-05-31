@@ -1,32 +1,41 @@
+// import { useEffect, useState } from "react";
+// import { supabase } from "../../SupabaseClient";
 
 const Avatar = () => {
 
+    // const [user, setUser] = useState();
+    // const [loading, setLoading] = useState(false);
 
-        const avatarName = "email";
+    const avatarName = "email";
     const avatarForm = "shapes";
 
     // USE ZUSTAND ?
 
-    // const [user, setUser] = useState();
-    // const avatarName = user ? user.firstname + user.lastname : "email";
-    // const avatarForm = user ? user.avatar : "shapes";
+      // useEffect(() => {
+      //   getUserbyId();
+      // }, []);
 
-    //   useEffect(() => {
-    //     getUserbyId()
-    // }, []);
-    
-  
-    // async function getUserbyId() {    
-    //     const { data: { user } } = await supabase.auth.getUser()
-    //   const { data, error } = await supabase.from("user_info").select().eq("user_id", user.id);
-    //         if (error) {
-    //       console.log(error.message);
-    //     }
-  
-    //   setUser(data[0]);
-    // }
+      // async function getUserbyId() {
+      //   setLoading(true);
+      //   const {
+      //     data: { user },
+      //   } = await supabase.auth.getUser();
+      //   setUser(user.user_metadata);
+      //   setLoading(false);
+      // }
+
+      // if (loading) {
+      //   return <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+      // }
+
+      
+
 
   return (
+    //     <img
+    //   src={`https://api.dicebear.com/9.x/${user?.avatar }/svg?seed=${user ? user.email : "email"}`}
+    //   alt="avatar"
+    // />
     <img
       src={`https://api.dicebear.com/9.x/${avatarForm}/svg?seed=${avatarName}`}
       alt="avatar"

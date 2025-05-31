@@ -7,6 +7,7 @@ const EntrepriseCard = ({ entreprise }) => {
     const navigate = useNavigate();
 
   return (
+    // card bg-base-100 image-full w-60 h-[12rem] xl:w-80 xl:h-[15rem] shadow-sm
     <div className="card bg-base-100 image-full w-80 xl:w-96 shadow-sm">
   <figure>
     <img

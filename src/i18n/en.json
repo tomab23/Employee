@@ -1,3 +1,7 @@
 {
+  "DEV": {
+    "ACTUAL": "Currently functional",
+    "FUTURE": "Upcoming features"
+  },
   "TEST": "ENGLISH"
 }
