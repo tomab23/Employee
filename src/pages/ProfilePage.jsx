@@ -6,14 +6,14 @@ import { supabase } from "../SupabaseClient";
 
 const ProfilePage = () => {
   const [user, setUser] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getUserbyId();
   }, []);
 
   async function getUserbyId() {
-    // setLoading(true);
+    setLoading(true);
     const {
       data: { user },
     } = await supabase.auth.getUser();

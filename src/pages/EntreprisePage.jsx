@@ -28,7 +28,7 @@ const EntreprisePage = () => {
   return (
     <div>
       <Navbar back log />
-      <h1 className="text-center text-3xl font-semibold uppercase my-5">
+      <h1 className="text-center text-3xl font-semibold capitalize my-5">
         {ent?.name}
       </h1>
 
@@ -58,6 +58,11 @@ const EntreprisePage = () => {
       <div className="mt-20 flex">
         <EntrepriseStats />
       </div>
+
+      <div className="flex justify-center mt-40 max-sm:mt-5 mb-20 ">
+        <button className="btn btn-error text-center ">Fermer l'entreprise</button>
+      </div>
+      {/* => POPUP de validation ? */}
 
       <Footer fixed={true} />
     </div>
