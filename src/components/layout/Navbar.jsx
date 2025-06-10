@@ -2,9 +2,11 @@ import { useNavigate } from "react-router";
 import NavbarLogPart from "./NavbarLogPart";
 import { useEffect, useState } from "react";
 import { supabase } from "../../SupabaseClient";
+import { useTranslation } from "react-i18next";
 
 const Navbar = ({ back, log }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [session, setSession] = useState(null);
 
@@ -23,7 +25,7 @@ const Navbar = ({ back, log }) => {
       {back ? (
         <div className="flex-1">
           <a className="btn btn-ghost text-xl" onClick={() => navigate(-1)}>
-            Retour
+            {t('BUTTON.BACK')}
           </a>
         </div>
       ) : (
@@ -47,13 +49,13 @@ const Navbar = ({ back, log }) => {
           ) : (
             <div className="flex items-center gap-3">
               <button className="btn" onClick={() => navigate("/sign")}>
-                Inscription
+                {t('LOG.REGISTER')}
               </button>
               <button
                 className="btn btn-ghost"
                 onClick={() => navigate("/login")}
               >
-                Connexion
+                {t('LOG.REGISTER')}
               </button>
             </div>
           )}
