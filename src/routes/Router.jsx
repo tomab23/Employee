@@ -24,7 +24,7 @@ const Router = () => {
     <Route path="/sign" element={<SignPage />} />
     <Route path="/contact" element={<ContactPage />} />
     <Route path="/dev" element={<DevNotePage />} />
-    <Route path="/*" element={<ErrorPage />} />
+    <Route path="/*" element={<ErrorPage />}  />
     {/* PRIVATE */}
     <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
     <Route path="/entreprise/:entId" element={<PrivateRoute><EntreprisePage /></PrivateRoute>} />

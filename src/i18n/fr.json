@@ -1,7 +1,49 @@
 {
+  "ACCORDION": {
+    "LANGUAGE": {
+      "ANSWER": "Le site est traduite en français et en anglais, vous pouvez changer la langue en bas de page, à gauche du changement de thème.",
+      "QUESTION": "Le site a-t-il été traduit ?"
+    },
+    "SITE": {
+      "ANSWER": "J'ai fait le site pour m'entraîner et tester Supabase.",
+      "QUESTION": " Pourquoi avoir fais le site ? "
+    },
+    "TECH": {
+      "ANSWER": "J'utilise React avec vite, Tailwind, React-router, Lucide pour les icons, I18next pour la traduction et Supabase pour le backend.",
+      "QUESTION": "Quelles technologies sont utiliser pour le site ?"
+    },
+    "THEME": {
+      "ANSWER": "Vous avez le choix entre différents thème (se trouvent tout en bas de la page) mais l'application est basé sur le thème par default.",
+      "QUESTION": "Puis-je changer de thème ?"
+    },
+    "USE": {
+      "ANSWER": "Pour gerer vos employés de votre entreprise ou de vos entreprises.",
+      "QUESTION": "Pourquoi utiliser le site ?"
+    }
+  },
+  "BUTTON": {
+    "BACK": "retour"
+  },
   "DEV": {
     "ACTUAL": "Actuellement fonctionnel",
     "FUTURE": "Fonctionnalités à venir"
   },
-  "TEST": "FRANCAIS"
+  "LANDING": {
+    "CONTACT": {
+      "TEXT": "N'hésitez pas à nous contacter.",
+      "TITLE": "Vous avez des questions ?"
+    },
+    "INFO": "Une application test pour gérer les employés de votre entreprise.",
+    "LINK": "Voici des liens qui pourraient vous intéressez.",
+    "WELCOME": "Bienvenue sur"
+  },
+  "LOG": {
+    "LOGIN": "Connexion",
+    "REGISTER": "Inscription"
+  },
+  "TEST": "FRANCAIS",
+  "WARN": {
+    "DEV": "Site en développement !",
+    "SEE": "Voir plus"
+  }
 }

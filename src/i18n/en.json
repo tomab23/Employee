@@ -1,7 +1,49 @@
 {
+  "ACCORDION": {
+    "LANGUAGE": {
+      "ANSWER": "The site is translated into French and English, and you can change the language at the bottom of the page, to the left of the theme change.",
+      "QUESTION": "Has the site been translated ?"
+    },
+    "SITE": {
+      "ANSWER": "I created the site to test and train with Supabase.",
+      "QUESTION": " Why did you make the site?"
+    },
+    "TECH": {
+      "ANSWER": "I use React with vite, Tailwind, React-router, Lucide for icons, I18next for translation and Supabase for the backend.",
+      "QUESTION": "Which technologies are used to create the site?"
+    },
+    "THEME": {
+      "ANSWER": "You can choose between different themes (at the bottom of the page), but the application is based on the default theme.",
+      "QUESTION": "Can I change my theme?"
+    },
+    "USE": {
+      "ANSWER": "To manage your employees in your company or companies.",
+      "QUESTION": "Why use the site?"
+    }
+  },
+  "BUTTON": {
+    "BACK": "back"
+  },
   "DEV": {
     "ACTUAL": "Currently functional",
     "FUTURE": "Upcoming features"
   },
-  "TEST": "ENGLISH"
+  "LANDING": {
+    "CONTACT": {
+      "TEXT": "Don't hesitate to contact us.",
+      "TITLE": "Do you have any questions?"
+    },
+    "INFO": "This is a test application for managing your company's employees.",
+    "LINK": "Here are some links that might be of interest to you.",
+    "WELCOME": "Welcome to"
+  },
+  "LOG": {
+    "LOGIN": "Sign in",
+    "REGISTER": "Sign up"
+  },
+  "TEST": "ENGLISH",
+  "WARN": {
+    "DEV": "This website is still a work in progress !",
+    "SEE": "See more"
+  }
 }

@@ -5,6 +5,7 @@ import Navbar from "../components/layout/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
 import EntrepriseStats from "../components/entreprise/EntrepriseStats";
 import { EntrepriseListMock } from "../mocks/EntrepriseListMock";
+import BadgeCloseEntreprise from "../components/entreprise/BadgeCloseEntreprise";
 
 const EntreprisePage = () => {
   const navigate = useNavigate();
@@ -29,7 +30,8 @@ const EntreprisePage = () => {
     <div>
       <Navbar back log />
       <h1 className="text-center text-3xl font-semibold capitalize my-5">
-        {ent?.name}
+        {ent?.name} {" "}
+        {ent?.close && <BadgeCloseEntreprise />}
       </h1>
 
       <div className="mx-10 max-sm:mx-2 max-lg:mx-5 max-xl:mx-10">
@@ -60,7 +62,8 @@ const EntreprisePage = () => {
       </div>
 
       <div className="flex justify-center mt-40 max-sm:mt-5 mb-20 ">
-        <button className="btn btn-error text-center ">Fermer l'entreprise</button>
+        {!ent.close && <button className="btn btn-error text-center ">Fermer l'entreprise</button>}
+        {ent.close && <button className="btn btn-success text-center ">Ouvrir l'entreprise</button>}
       </div>
       {/* => POPUP de validation ? */}
 
