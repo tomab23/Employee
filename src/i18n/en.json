@@ -41,6 +41,10 @@
     "LOGIN": "Sign in",
     "REGISTER": "Sign up"
   },
+  "PROGRESS": {
+    "MAINTENANCE": "Currently under maintenance",
+    "SOON": "Available soon"
+  },
   "TEST": "ENGLISH",
   "WARN": {
     "DEV": "This website is still a work in progress !",

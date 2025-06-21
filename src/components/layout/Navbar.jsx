@@ -1,24 +1,13 @@
 import { useNavigate } from "react-router";
 import NavbarLogPart from "./NavbarLogPart";
-import { useEffect, useState } from "react";
-import { supabase } from "../../SupabaseClient";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Navbar = ({ back, log }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
+  const  { isAuthenticated } = useAuth()
 
   return (
     <div className="navbar bg-base-300 shadow-sm">
@@ -44,7 +33,7 @@ const Navbar = ({ back, log }) => {
         <NavbarLogPart />
       ) : (
         <div>
-          {session ? (
+          {isAuthenticated ? (
             <NavbarLogPart />
           ) : (
             <div className="flex items-center gap-3">
@@ -55,7 +44,7 @@ const Navbar = ({ back, log }) => {
                 className="btn btn-ghost"
                 onClick={() => navigate("/login")}
               >
-                {t('LOG.REGISTER')}
+                {t('LOG.LOGIN')}
               </button>
             </div>
           )}

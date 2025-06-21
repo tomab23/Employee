@@ -1,26 +1,22 @@
-import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { supabase } from "../SupabaseClient";
+import { useAuth } from '../contexts/AuthContext';
+import { Navigate } from 'react-router-dom';
 
-const PrivateRoute = ({ children }) => {
-    const [session, setSession] = useState(undefined)
-  
-    
-    useEffect(() => {
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        setSession(session);
-      });
-  
-      supabase.auth.onAuthStateChange((_event, session) => {
-        setSession(session);
-      });
-    }, []);
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, loading } = useAuth();
 
-  if (session === undefined) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   }
 
-  return <div>{session ? <>{children}</> : <Navigate to="/login" />}</div>;
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
 };
 
-export default PrivateRoute;
+export default ProtectedRoute;

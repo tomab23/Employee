@@ -7,8 +7,16 @@ import HeroLanding from "../components/landing/HeroLanding";
 import LinksPart from "../components/landing/LinksPart";
 import Navbar from "../components/layout/Navbar";
 import Footer from "./../components/layout/Footer";
+import { useAuth } from "../contexts/AuthContext";
+import { Navigate } from "react-router-dom";
 
 const LandingPage = () => {
+  const  { isAuthenticated } = useAuth()
+
+  if (isAuthenticated) {
+    return <Navigate to="/home" replace />;
+  }
+
   return (
     <div>
       <Navbar />

@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router";
-import { supabase } from "../../SupabaseClient";
 import Avatar from "../profile/Avatar";
+import { useAuth } from "../../contexts/AuthContext";
 
 const NavbarLogPart = () => {
   const navigate = useNavigate();
+  const { signOut } = useAuth();
 
-  async function signOut() {
-    navigate("/");
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error("Error signing out:", error);
+  const handleSignOut = async () => {
+    const { error } = await signOut();
+    if (!error) {
+      console.log('Déconnexion réussie');
     }
-  }
+  };
 
   return (
     <div className="flex gap-2">
@@ -53,7 +53,7 @@ const NavbarLogPart = () => {
             <a onClick={() => navigate("/dev")}>Développement</a>
           </li>
           <div className="divider -my-1"></div>
-          <li onClick={signOut}>
+          <li onClick={handleSignOut}>
             <a>Déconnexion</a>
           </li>
         </ul>
