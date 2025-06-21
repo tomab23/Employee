@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CustomName from "../components/custom/CustomName";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { KeyRound, Mail, MapPin, UserPen } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { supabase } from "../SupabaseClient";
+import HeaderSign from "../components/layout/HeaderSign";
 
 const SignPage = ({ login }) => {
   const { isAuthenticated, signIn, signUp } = useAuth();
@@ -118,7 +118,7 @@ const SignPage = ({ login }) => {
 
   return (
     <div className="hero bg-base-300 min-h-screen">
-      <CustomName />
+      <HeaderSign />
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl text-center font-bold">

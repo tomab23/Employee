@@ -1,4 +1,4 @@
-import { UserRound, UsersRound, BookUser } from "lucide-react";
+import { UserRound, UsersRound, BookUser, ChevronLeft } from "lucide-react";
 import AlertWarning from "../components/AlertWarning";
 import ScrollToTopButton from "../components/custom/ScrollToTopButton";
 import Accordions from "../components/landing/Accordions";
@@ -9,6 +9,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "./../components/layout/Footer";
 import { useAuth } from "../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
+import HeaderSign from "../components/layout/HeaderSign";
 
 const LandingPage = () => {
   const  { isAuthenticated } = useAuth()
@@ -20,7 +21,6 @@ const LandingPage = () => {
   return (
     <div>
       <Navbar />
-
       {/* ICONS BOUNCE */}
       <div className="absolute top-20 left-10 max-sm:left-1 animate-float">
         <UserRound className="w-8 h-8 text-secondary fill-current opacity-60" />
