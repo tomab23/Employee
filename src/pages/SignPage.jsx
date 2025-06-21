@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CustomName from "../components/custom/CustomName";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { supabase } from "../SupabaseClient";
 import { KeyRound, Mail, MapPin, UserPen } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
+import { supabase } from "../SupabaseClient";
+import HeaderSign from "../components/layout/HeaderSign";
 
 const SignPage = ({ login }) => {
+  const { isAuthenticated, signIn, signUp } = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -19,8 +21,50 @@ const SignPage = ({ login }) => {
       .required("Le message est obligatoire"),
   });
 
+    useEffect(() => {
+    if (!loading && isAuthenticated) {
+      navigate('/home');
+    }
+  }, [isAuthenticated, loading, navigate]);
+
   // REGISTER
-  const signUpNewUser = async (email, password, first, last, loc) => {
+  // const signUpNewUser = async (email, password, firstname, lastname, location) => {
+  //   setLoading(true);
+
+  //   const { error, data } = await signUp(email, password, firstname, lastname, location);
+    
+
+  //   if (error) {
+  //     setLoading(false);
+  //     console.error("Error signing up: ", error);
+  //     return { success: false, error };
+  //   }
+
+  //   setLoading(false);
+        
+  //   return { success: true, data };
+  // };
+
+
+
+  // LOGIN
+  const signInUser = async (email, password) => {
+    setLoading(true);
+
+    const { error } = await signIn(email, password);
+    
+    if (error) {
+      console.log(error);
+    } else {
+      // La redirection se fera automatiquement via useEffect
+      console.log('Connexion réussie!');
+    }
+    
+    setLoading(false);
+  };
+
+//  TEST REGISTER
+    const signUpNewUser = async (email, password, first, last, loc) => {
     setLoading(true);
     const { data, error } = await supabase.auth.signUp({
       email: email,
@@ -41,52 +85,10 @@ const SignPage = ({ login }) => {
       return { success: false, error };
     }
 
-    // GET USER LOG
-    // const { data: { user } } = await supabase.auth.getUser();
-
-    // // ADD USER INFO
-    // const { errorAdd } = await supabase
-    //   .from("user_info")
-    //   .insert({ lastname: last, firstname: first, location: loc, user_id: user.id, avatar: "shapes" });
-
-    // if (errorAdd ) {
-    //   alert("error Create user informations")
-    // }
-
     setLoading(false);
     navigate("/home");
         
     return { success: true, data };
-  };
-
-  // LOGIN
-  const signInUser = async (email, password) => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-
-      // Handle Supabase error explicitly
-      if (error) {
-        console.error("Sign-in error:", error.message); // Log the error for debugging
-        return { success: false, error: error.message }; // Return the error
-      }
-
-      // IF NO RERROR, RETURN SUCCESS
-      // console.log("Sign-in success:", data);
-      setLoading(false);
-      navigate("/home");
-      return { success: true, data }; // Return the user data
-    } catch (error) {
-      // Handle unexpected issues
-      console.error("Unexpected error during sign-in:", error.message);
-      return {
-        success: false,
-        error: "An unexpected error occurred. Please try again.",
-      };
-    }
   };
 
   const formik = useFormik({
@@ -94,6 +96,7 @@ const SignPage = ({ login }) => {
       email: "",
       password: "",
       firstname: "",
+      // confirmPassword: "",
       lastname: "",
       location: "",
     },
@@ -115,7 +118,7 @@ const SignPage = ({ login }) => {
 
   return (
     <div className="hero bg-base-300 min-h-screen">
-      <CustomName />
+      <HeaderSign />
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl text-center font-bold">

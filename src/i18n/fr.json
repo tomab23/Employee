@@ -41,6 +41,10 @@
     "LOGIN": "Connexion",
     "REGISTER": "Inscription"
   },
+  "PROGRESS": {
+    "MAINTENANCE": "Actuellement en maintenance",
+    "SOON": "Bientôt disponible"
+  },
   "TEST": "FRANCAIS",
   "WARN": {
     "DEV": "Site en développement !",
