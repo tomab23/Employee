@@ -3,7 +3,7 @@ import NavbarLogPart from "./NavbarLogPart";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../contexts/AuthContext";
 
-const Navbar = ({ back, log }) => {
+const Navbar = ({ back }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -19,19 +19,10 @@ const Navbar = ({ back, log }) => {
         </div>
       ) : (
         <div className="flex-1">
-          {/* <a
-            className={`btn btn-ghost text-xl ${!session && "cursor-default"}`}
-            onClick={backHome}
-          >
-            Employee
-          </a> */}
           <p className="px-4 font-semibold text-xl cursor-default">Employee</p>
         </div>
       )}
       {/* BUTTONS */}
-      {log ? (
-        <NavbarLogPart />
-      ) : (
         <div>
           {isAuthenticated ? (
             <NavbarLogPart />
@@ -49,7 +40,6 @@ const Navbar = ({ back, log }) => {
             </div>
           )}
         </div>
-      )}
     </div>
   );
 };

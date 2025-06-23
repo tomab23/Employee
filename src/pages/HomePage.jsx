@@ -26,7 +26,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Navbar log />
+      <Navbar />
 
       <h1 className="text-center text-3xl my-5 font-semibold">
         Bonjour {userMetadata?.first_name} {userMetadata?.last_name}

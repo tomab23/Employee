@@ -28,7 +28,7 @@ const EntreprisePage = () => {
 
   return (
     <div>
-      <Navbar back log />
+      <Navbar back />
       <h1 className="text-center text-3xl font-semibold capitalize my-5">
         {ent?.name} {" "}
         {ent?.close && <BadgeCloseEntreprise />}

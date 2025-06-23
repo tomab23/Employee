@@ -27,7 +27,7 @@ const ProfilePage = () => {
 
   return (
         <div>
-      <Navbar back log />
+      <Navbar back />
       <h1 className="text-4xl font-bold text-center mt-5">
         Votre profil - {userMetadata?.first_name} {userMetadata?.last_name}
       </h1>
