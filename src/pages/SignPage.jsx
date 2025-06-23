@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { KeyRound, Mail, MapPin, UserPen } from "lucide-react";
+import { KeyRound, Mail, MapPin, UserPen, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { supabase } from "../SupabaseClient";
 import HeaderSign from "../components/layout/HeaderSign";
@@ -11,6 +11,12 @@ const SignPage = ({ login }) => {
   const { isAuthenticated, signIn, signUp } = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+    const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const ValidSchema = Yup.object().shape({
     email: Yup.string()
@@ -159,9 +165,9 @@ const SignPage = ({ login }) => {
               <label className="fieldset-label">Password</label>
               <label className="input validator">
                 <KeyRound className="w-5 stroke-2" />
-                {/* INPUT PASSWORD */}
-                <input
-                  type="password"
+                {/* INPUT PASSWORD */}       
+                  <input
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   onChange={formik.handleChange}
@@ -171,8 +177,21 @@ const SignPage = ({ login }) => {
                   min="8"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 />
+        <button
+          type="button"
+          onClick={togglePasswordVisibility}
+          className="absolute inset-y-0 right-0 flex items-center pr-3 hover:text-primary transition-colors cursor-pointer"
+          tabIndex={-1}
+        >
+          {showPassword ? (
+            <EyeOff className="h-5 w-5 text-gray-400" />
+          ) : (
+            <Eye className="h-5 w-5 text-gray-400" />
+          )}
+        </button>
+   
                 {/* TOOLTIP */}
-                {!login && (
+                {/* {!login && (
                   <div className="tooltip max-sm:tooltip-left ">
                     <div className="tooltip-content">
                       <div className="font-semibold max-sm:text-xs max-sm:w-56">
@@ -184,7 +203,7 @@ const SignPage = ({ login }) => {
                       i
                     </span>
                   </div>
-                )}
+                )} */}
               </label>
 
               {!login && (
