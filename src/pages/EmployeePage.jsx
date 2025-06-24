@@ -5,7 +5,7 @@ import Footer from '../components/layout/Footer'
 const EmployeePage = () => {
   return (
     <div>
-      <Navbar back log />
+      <Navbar back />
 
       EmployeePage
 

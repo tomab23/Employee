@@ -8,7 +8,7 @@ import ListTestEmployee from "../components/employee/ListTestEmployee";
 const ListEmployeePage = () => {
   return (
     <div className="flex flex-col">
-      <Navbar back log />
+      <Navbar back />
 
       <h1 className="text-center font-semibold text-3xl uppercase my-5">
         Vos employés
