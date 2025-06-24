@@ -14,6 +14,7 @@ import UserFormPage from '../pages/forms/UserFormPage'
 import EntrepriseFormPage from '../pages/forms/EntrepriseFormPage'
 import ProfilePage from '../pages/ProfilePage'
 import DevNotePage from '../pages/DevNotePage'
+import ForgotPasswordPage from '../pages/ForgotPasswordPage'
 
 const Router = () => {
 
@@ -24,6 +25,7 @@ const Router = () => {
     <Route path="/sign" element={<SignPage />} />
     <Route path="/contact" element={<ContactPage />} />
     <Route path="/dev" element={<DevNotePage />} />
+    <Route path="/password" element={<ForgotPasswordPage />}  />
     <Route path="/*" element={<ErrorPage />}  />
     {/* PRIVATE */}
     <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
