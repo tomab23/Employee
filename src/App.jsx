@@ -7,7 +7,7 @@ import InProgressPage from './pages/InProgressPage';
 
 function App() {
 
-  const inProgess = false
+  const inProgess = true
 
   useEffect(() => {
     themeChange(false)

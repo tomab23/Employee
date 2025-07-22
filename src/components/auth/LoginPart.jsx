@@ -129,7 +129,7 @@ const LoginPart = () => {
 
             {/* FORGOT PASSWORD */}
             <div>
-              <a className="link link-hover">Forgot password?</a>
+              <a href="/password" className="link link-hover">Forgot password?</a>
             </div>
             {/* BUTTON */}
             <button type="submit" className="btn btn-neutral mt-4">
