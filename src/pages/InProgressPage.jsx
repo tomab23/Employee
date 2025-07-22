@@ -7,7 +7,7 @@ const InProgressPage = () => {
     const { t } = useTranslation();
 
   return (
-    <div className=" flex-col justify-center items-center">
+    <div className="min-h-screen flex-col justify-center items-center">
       <div className="navbar bg-base-300 shadow-sm h-[5vh]">
         <div className="flex-1">
           <p className="px-4 font-semibold text-xl cursor-default">Employee</p>
