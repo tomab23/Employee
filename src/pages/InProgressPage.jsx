@@ -8,21 +8,23 @@ const InProgressPage = () => {
 
   return (
     <div className="min-h-screen flex-col justify-center items-center">
-      <div className="navbar bg-base-300 shadow-sm">
+      <div className="navbar bg-base-300 shadow-sm h-[5vh]">
         <div className="flex-1">
           <p className="px-4 font-semibold text-xl cursor-default">Employee</p>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center">
+      {/* BODY */}
+    <div className="flex max-md:flex-col justify-center items-center lg:gap-20  lg:h-[85vh]">
+
         <img
           src={progress}
           alt="illustrations by Storyset"
           title="illustrations by Storyset"
-          className="h-[35rem] max-sm:h-[25rem]"
+          className="h-[36rem] max-sm:h-[25rem]"
         />
-      </div>
 
-      <div className="flex justify-self-center gap-2">
+<div>
+                <div className="flex justify-self-center gap-2">
         <TriangleAlert />
         <h1 className="text-center font-bold uppercase">
           {t('PROGRESS.MAINTENANCE')}
@@ -31,6 +33,11 @@ const InProgressPage = () => {
       </div>
       <br />
       <h1 className="text-center font-bold uppercase">{t('PROGRESS.SOON')}</h1>
+</div>
+
+    </div>
+
+      {/* FOOTER */}
       <Footer fixed />
     </div>
   );
